@@ -1,0 +1,22 @@
+<section>
+  <div class="page-header">
+    <h1>Surveys</h1>
+  </div>
+  <div class="list-group">
+    <a data-ng-repeat="survey in vm.surveys"
+       data-ui-sref="surveys.view({ surveyId: survey._id })"
+       class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span data-ng-bind="survey.created | date:'mediumDate'"></span>
+        by
+        <span data-ng-if="survey.user" data-ng-bind="survey.user.displayName"></span>
+        <span data-ng-if="!survey.user">Deleted User</span>
+      </small>
+      <h4 class="list-group-item-heading" data-ng-bind="survey.name"></h4>
+    </a>
+  </div>
+  <div class="alert alert-warning text-center" data-ng-if="vm.surveys.$resolved && !vm.surveys.length">
+    No Surveys yet, why don't you <a data-ui-sref="surveys.create">create one</a>?
+  </div>
+</section>
